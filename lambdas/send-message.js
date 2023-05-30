@@ -8,14 +8,14 @@ exports.handler = async (event, context) => {
         for (const record of event.Records) {
 
             const item = record.dynamodb.NewImage;
-
+console.log("antes params");
             const sqsParams = {
                 MessageBody: JSON.stringify(item),
-                QueueUrl: 'https://sqs.us-east-1.amazonaws.com/328864242514/TransactionAppStack-TransactionAppStackSaldoQueue78833CF08r3XAmd3b1-qirfilnw2iie'
+                QueueUrl: 'https://sqs.us-east-1.amazonaws.com/328864242514/TransactionAppStack-TransactionAppStackTransactionAppStackTransacti-iDf1xYY0vcU9'
             };
-
+            console.log("depois params");
             await sqs.sendMessage(sqsParams).promise();
-
+            console.log("depois send");
         }
 
         return {
