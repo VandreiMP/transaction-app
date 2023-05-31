@@ -1,7 +1,7 @@
 const { DynamoDB } = require('aws-sdk');
 const crypto = require('crypto');
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
     const transaction = {
         id: crypto.randomUUID(),
         ...JSON.parse(event.body)
@@ -13,7 +13,8 @@ exports.handler = async function(event, context) {
             TableName: 'Transaction',
             Item: transaction,
         }).promise();
-        
+        //validar para não adicionar transação negativa
+        //validar para a primeira transação não ser uma saída   
         return {
             statusCode: 201,
             headers: { "Content-Type": "application/json" },

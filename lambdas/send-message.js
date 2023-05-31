@@ -7,13 +7,15 @@ exports.handler = async (event, context) => {
     try {
         for (const record of event.Records) {
 
-            const item = record.dynamodb.NewImage;
-console.log("antes params");
+            const mapInsert = AWS.DynamoDB.Converter.unmarshall(record.dynamodb.NewImage);
+
+            console.log("antes params");
             const sqsParams = {
-                MessageBody: JSON.stringify(item),
-                QueueUrl: 'https://sqs.us-east-1.amazonaws.com/328864242514/TransactionAppStack-TransactionAppStackTransactionAppStackTransacti-iDf1xYY0vcU9'
+                MessageBody: JSON.stringify(mapInsert),
+                QueueUrl: process.env.QUEUE_URL
             };
-            console.log("depois params");
+
+            console.log("depois params: " + sqsParams.toString());
             await sqs.sendMessage(sqsParams).promise();
             console.log("depois send");
         }
