@@ -12,6 +12,7 @@ exports.handler = async function (event, context) {
             TableName: 'Transaction',
             Item: transaction,
         }).promise();
+        
         return {
             statusCode: 201,
             headers: { "Content-Type": "application/json" },
