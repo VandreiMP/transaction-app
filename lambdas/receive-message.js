@@ -10,18 +10,18 @@ exports.handler = async (event, context) => {
 
         for (const record of event.Records) {
             const message = JSON.parse(record.body);
-            var idTeste = crypto.randomUUID();
-            var valorTeste = message.valor;
-            const tipoTeste = message.tipo;
+            var idBalance = crypto.randomUUID();
+            var valorBalance = message.valor;
+            const tipoTransaction = message.tipo;
             if (data.Count > 0) {
-                valorTeste = tipoTeste == "S" ? (data.Items[0].valor - valorTeste) : (data.Items[0].valor + valorTeste)
-                idTeste = data.Items[0].id;
+                valorBalance = tipoTransaction == "S" ? (data.Items[0].valor - valorBalance) : (data.Items[0].valor + valorBalance)
+                idBalance = data.Items[0].id;
             }
             const params = {
                 TableName: 'Balance',
                 Item: {
-                    id: idTeste,
-                    valor: valorTeste,
+                    id: idBalance,
+                    valor: valorBalance,
                 }
             };
             await docClient.put(params).promise();

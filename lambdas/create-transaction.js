@@ -7,14 +7,11 @@ exports.handler = async function (event, context) {
         ...JSON.parse(event.body)
     }
     try {
-        console.log("Creating a new transaction: ", transaction);
         const docClient = new DynamoDB.DocumentClient();
         await docClient.put({
             TableName: 'Transaction',
             Item: transaction,
         }).promise();
-        //validar para não adicionar transação negativa
-        //validar para a primeira transação não ser uma saída   
         return {
             statusCode: 201,
             headers: { "Content-Type": "application/json" },

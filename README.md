@@ -10,8 +10,3 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
 * `cdk deploy`           deploy this stack to your default AWS account/region
 * `cdk diff`             compare deployed stack with current state
 * `cdk synth`            emits the synthesized CloudFormation template
-
-## Variáveis de Ambiente
-* export AWS_REGION=us-east-1
-* export AWS_SECRET_ACCESS_KEY=btDsgbyrpFHeyd9ihFcpN+IeOkJnXfOICvvVtSHP
-* export AWS_ACCESS_KEY_ID=AKIAUZEOWDNJE6PMKFG7
